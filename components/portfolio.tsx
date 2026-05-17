@@ -13,7 +13,7 @@ import {
   Workflow,
 } from "lucide-react";
 import Image from "next/image";
-import { memo, useEffect, useMemo, useRef, useState } from "react";
+import { type CSSProperties, memo, useEffect, useMemo, useRef, useState } from "react";
 
 import { LanguageToggle } from "@/components/language-toggle";
 import { ProjectCard } from "@/components/project-card";
@@ -66,6 +66,7 @@ export function Portfolio() {
   const [language, setLanguage] = useState<Language>("pt");
   const [activeSection, setActiveSection] = useState("perfil");
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [scrollYMotion, setScrollYMotion] = useState(0);
   const scrollFrame = useRef<number | null>(null);
   const t = useMemo(() => content[language], [language]);
 
@@ -89,6 +90,7 @@ export function Portfolio() {
       const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
       const progress = documentHeight > 0 ? (scrollTop / documentHeight) * 100 : 0;
       setScrollProgress(Math.min(100, Math.max(0, progress)));
+      setScrollYMotion(scrollTop);
 
       const currentSection = navigationItems
         .map(({ id }) => document.getElementById(id))
@@ -118,7 +120,15 @@ export function Portfolio() {
   }, [navigationItems]);
 
   return (
-    <main className="page-grid relative min-h-screen">
+    <main
+      className="page-grid relative min-h-screen"
+      style={
+        {
+          "--scroll-progress": scrollProgress,
+          "--scroll-y": scrollYMotion,
+        } as CSSProperties
+      }
+    >
       <div className="cosmic-scene" aria-hidden="true">
         <div className="cosmic-nebula" />
         <div className="cosmic-stars" />
@@ -142,7 +152,7 @@ export function Portfolio() {
 
             <LanguageToggle language={language} onChange={setLanguage} />
 
-            <nav className="order-3 flex w-full gap-2 overflow-x-auto pt-1 text-sm text-slate-300 sm:order-none sm:w-auto sm:pt-0">
+            <nav className="order-3 flex w-full gap-2 overflow-x-auto pt-1 text-sm text-slate-200 sm:order-none sm:w-auto sm:pt-0">
               {navigationItems.map((item) => (
                 <a
                   key={item.id}
@@ -162,7 +172,7 @@ export function Portfolio() {
 
         <section className="relative mx-auto grid max-w-7xl gap-10 px-4 pb-20 pt-12 sm:px-6 sm:pt-16 lg:grid-cols-[minmax(0,1fr)_21rem] lg:gap-20 lg:px-8 lg:pb-24 lg:pt-20">
           <div className="fade-up">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm text-slate-300">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm text-slate-200">
               <span>{t.hero.eyebrow}</span>
               <span className="h-1 w-1 rounded-full bg-sky-300" />
               <span className="inline-flex items-center gap-1.5">
@@ -172,13 +182,13 @@ export function Portfolio() {
             </div>
 
             <p className="mt-8 text-lg font-medium text-sky-300">Lucas Braga Zamproni Lima</p>
-            <p className="mt-4 text-sm font-semibold uppercase tracking-[0.24em] text-slate-400">
+            <p className="mt-4 text-sm font-semibold uppercase tracking-[0.24em] text-slate-300">
               {t.hero.title}
             </p>
             <h1 className="mt-4 max-w-5xl text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
               <span className="text-gradient">{t.hero.headline}</span>
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl">
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-200 sm:text-xl">
               {t.hero.description}
             </p>
 
@@ -228,15 +238,15 @@ export function Portfolio() {
           <div className="mt-9 border-t border-white/10 pt-9">
             <div className="grid gap-10 lg:grid-cols-[minmax(0,0.86fr)_minmax(0,1.14fr)]">
               <div>
-                <div className="space-y-5 text-base leading-8 text-slate-300 sm:text-lg">
+                <div className="space-y-5 text-base leading-8 text-slate-200 sm:text-lg">
                   {t.about.body.map((paragraph) => (
                     <p key={paragraph}>{paragraph}</p>
                   ))}
                 </div>
 
                 <div className="mt-8">
-                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-400">{t.help.title}</p>
-                  <p className="mt-3 leading-7 text-slate-300">{t.help.intro}</p>
+                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-300">{t.help.title}</p>
+                  <p className="mt-3 leading-7 text-slate-200">{t.help.intro}</p>
                   <div className="mt-4 flex flex-wrap gap-2">
                     {t.help.items.map((item) => (
                       <span
@@ -252,7 +262,7 @@ export function Portfolio() {
 
               <div>
                 <p className="text-2xl font-semibold tracking-tight text-white">{t.differentials.title}</p>
-                <p className="mt-4 max-w-2xl leading-8 text-slate-300">{t.differentials.intro}</p>
+                <p className="mt-4 max-w-2xl leading-8 text-slate-200">{t.differentials.intro}</p>
 
                 <div className="mt-6 grid gap-x-6 gap-y-5 sm:grid-cols-2">
                   {t.differentials.items.map((item, index) => {
@@ -266,7 +276,7 @@ export function Portfolio() {
                           </div>
                           <h3 className="text-lg font-semibold text-white">{item.title}</h3>
                         </div>
-                        <p className="mt-3 leading-7 text-slate-300">{item.text}</p>
+                        <p className="mt-3 leading-7 text-slate-200">{item.text}</p>
                       </article>
                     );
                   })}
@@ -295,7 +305,7 @@ export function Portfolio() {
                       logo.invertOnDark ? "invert" : ""
                     }`}
                   />
-                  <span className="text-xs font-mono tracking-wide text-slate-400 sm:text-sm">{logo.label}</span>
+                  <span className="text-xs font-mono tracking-wide text-slate-300 sm:text-sm">{logo.label}</span>
                 </div>
               ))}
             </div>
@@ -322,7 +332,7 @@ export function Portfolio() {
             <div className="relative grid gap-8 md:grid-cols-[minmax(0,1fr)_18rem] md:items-start">
               <div>
                 <h2 className="text-4xl font-semibold tracking-tight text-white">{t.contact.title}</h2>
-                <p className="mt-4 max-w-2xl text-base leading-8 text-slate-300">{t.contact.intro}</p>
+                <p className="mt-4 max-w-2xl text-base leading-8 text-slate-200">{t.contact.intro}</p>
               </div>
 
               <div className="border-t border-white/10 pt-5 md:border-l md:border-t-0 md:pl-6 md:pt-0">
@@ -331,7 +341,7 @@ export function Portfolio() {
                 <div className="mt-6 flex flex-wrap gap-x-4 gap-y-3 text-sm md:flex-col md:items-start">
                   <a
                     href={`mailto:${siteConfig.email}`}
-                    className="link-glow inline-flex items-center gap-2 text-slate-300 hover:text-white"
+                    className="link-glow inline-flex items-center gap-2 text-slate-200 hover:text-white"
                   >
                     <Mail className="h-4 w-4 text-sky-300" />
                     {siteConfig.email}
@@ -340,7 +350,7 @@ export function Portfolio() {
                     href={siteConfig.githubUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="link-glow inline-flex items-center gap-2 text-slate-300 hover:text-white"
+                    className="link-glow inline-flex items-center gap-2 text-slate-200 hover:text-white"
                   >
                     <Github className="h-4 w-4 text-sky-300" />
                     {siteConfig.githubLabel}
@@ -349,7 +359,7 @@ export function Portfolio() {
                     href={siteConfig.linkedinUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="link-glow inline-flex items-center gap-2 text-slate-300 hover:text-white"
+                    className="link-glow inline-flex items-center gap-2 text-slate-200 hover:text-white"
                   >
                     <PanelsTopLeft className="h-4 w-4 text-sky-300" />
                     {siteConfig.linkedinLabel}
@@ -358,7 +368,7 @@ export function Portfolio() {
                     href={siteConfig.whatsappUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="link-glow inline-flex items-center gap-2 text-slate-300 hover:text-white"
+                    className="link-glow inline-flex items-center gap-2 text-slate-200 hover:text-white"
                   >
                     <MessageCircle className="h-4 w-4 text-sky-300" />
                     {siteConfig.whatsappLabel}
@@ -370,9 +380,9 @@ export function Portfolio() {
         </section>
 
         <footer className="order-5 border-t border-white/10 px-4 py-7 sm:px-6 lg:px-8">
-          <div className="mx-auto flex max-w-7xl flex-col gap-3 text-xs font-medium text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+          <div className="mx-auto flex max-w-7xl flex-col gap-3 text-xs font-medium text-slate-400 sm:flex-row sm:items-center sm:justify-between">
             <p>Braga Lima System â€” {t.footer.role}</p>
-            <p>Â© {new Date().getFullYear()} Lucas Braga Zamproni Lima</p>
+            <p>© {new Date().getFullYear()} Lucas Braga Zamproni Lima</p>
           </div>
         </footer>
       </div>
@@ -408,11 +418,12 @@ const VisitorClock = memo(function VisitorClock({
 
   return (
     <>
-      <p className="text-xs uppercase tracking-[0.24em] text-slate-500">
+      <p className="text-xs uppercase tracking-[0.24em] text-slate-400">
         {language === "pt" ? "Agora para quem visita" : "Visitor local time"}
       </p>
       <p className="mt-2 text-3xl font-semibold tracking-tight text-white">{localTime}</p>
-      <p className="mt-1 text-sm text-slate-400">{localZone}</p>
+      <p className="mt-1 text-sm text-slate-300">{localZone}</p>
     </>
   );
 });
+

@@ -116,59 +116,65 @@ h6 {
 }
 
 .cosmic-stars {
-  opacity: 0.55;
+  opacity: 0.5;
   background-image:
     radial-gradient(circle, rgba(255, 255, 255, 0.9) 1px, transparent 1.4px),
     radial-gradient(circle, rgba(125, 211, 252, 0.75) 1px, transparent 1.3px);
   background-position:
-    calc(var(--scroll-progress, 0) * -0.9px) calc(var(--scroll-progress, 0) * -0.4px),
-    calc(var(--scroll-progress, 0) * -0.6px + 28px) calc(var(--scroll-progress, 0) * -0.3px + 28px);
+    0 calc(var(--scroll-y, 0) * 0.01px),
+    28px calc(var(--scroll-y, 0) * 0.016px + 28px);
   background-size:
     84px 84px,
     116px 116px;
   animation:
-    starfield-pan 42s linear infinite,
-    stars-twinkle 4.5s ease-in-out infinite;
+    starfield-pan 62s linear infinite,
+    stars-twinkle 7.5s ease-in-out infinite;
+  transition: background-position 140ms linear;
 }
 
 .cosmic-stars::before {
-  opacity: 0.45;
+  opacity: 0.38;
   background-image: radial-gradient(circle, rgba(196, 181, 253, 0.8) 1px, transparent 1.4px);
   background-size: 150px 150px;
-  background-position: calc(var(--scroll-progress, 0) * 0.8px) calc(var(--scroll-progress, 0) * -0.5px);
+  background-position:
+    0 calc(var(--scroll-y, 0) * 0.026px);
   animation:
-    starfield-pan-reverse 60s linear infinite,
-    stars-twinkle 6.5s ease-in-out infinite reverse;
+    starfield-pan-reverse 90s linear infinite,
+    stars-twinkle 9.5s ease-in-out infinite reverse;
+  transition: background-position 160ms linear;
 }
 
 .cosmic-stars::after {
-  opacity: 0.35;
+  opacity: 0.28;
   background-image: radial-gradient(circle, rgba(255, 255, 255, 0.95) 1px, transparent 1.4px);
   background-size: 210px 210px;
-  background-position: calc(var(--scroll-progress, 0) * -0.35px) calc(var(--scroll-progress, 0) * -0.2px);
+  background-position:
+    0 calc(var(--scroll-y, 0) * 0.038px);
   animation:
-    starfield-pan 80s linear infinite,
-    stars-twinkle 8s ease-in-out infinite;
+    starfield-pan 118s linear infinite,
+    stars-twinkle 11s ease-in-out infinite;
+  transition: background-position 180ms linear;
 }
 
 .cosmic-bright-stars {
-  opacity: 0.9;
+  opacity: 0.72;
   background-image:
     radial-gradient(circle, rgba(255, 255, 255, 0.98) 0 1.4px, transparent 2.2px),
     radial-gradient(circle, rgba(186, 230, 253, 0.98) 0 1.2px, transparent 2px),
     radial-gradient(circle, rgba(221, 214, 254, 0.95) 0 1.5px, transparent 2.3px);
   background-position:
-    calc(var(--scroll-progress, 0) * -1.15px + 18px) calc(var(--scroll-progress, 0) * -0.4px + 42px),
-    calc(var(--scroll-progress, 0) * -0.7px + 147px) calc(var(--scroll-progress, 0) * -0.2px + 86px),
-    calc(var(--scroll-progress, 0) * -0.45px + 263px) calc(var(--scroll-progress, 0) * -0.1px + 24px);
+    18px calc(var(--scroll-y, 0) * 0.055px + 42px),
+    147px calc(var(--scroll-y, 0) * 0.07px + 86px),
+    263px calc(var(--scroll-y, 0) * 0.085px + 24px);
   background-size:
     320px 320px,
     430px 430px,
     560px 560px;
   filter: drop-shadow(0 0 5px rgba(186, 230, 253, 0.5));
   animation:
-    starfield-pan 96s linear infinite,
-    stars-bright-twinkle 7.5s ease-in-out infinite;
+    starfield-pan 142s linear infinite,
+    stars-bright-twinkle 12s ease-in-out infinite;
+  transition: background-position 200ms linear;
 }
 
 .cosmic-bright-stars::before {
@@ -247,7 +253,7 @@ h6 {
   );
   transform: rotate(-16deg);
   filter: blur(0.15px);
-  animation: comet-pass 17s cubic-bezier(0.18, 0.64, 0.33, 1) infinite;
+  animation: comet-pass 24s cubic-bezier(0.18, 0.64, 0.33, 1) infinite;
 }
 
 .cosmic-comet::before {
@@ -274,10 +280,10 @@ h6 {
 .cosmic-comet-secondary {
   top: 59%;
   width: 14rem;
-  opacity: 0.62;
+  opacity: 0.44;
   transform: rotate(-11deg);
-  animation-duration: 23s;
-  animation-delay: 6s;
+  animation-duration: 32s;
+  animation-delay: 8s;
 }
 
 .page-grid {

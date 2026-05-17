@@ -1,4 +1,4 @@
-type ProjectCardProps = {
+﻿type ProjectCardProps = {
   eyebrow: string;
   title: string;
   summary: string;
@@ -29,7 +29,7 @@ function RestaurantScreenshot() {
       <BrowserChrome title="PDV / Sistema de Gestão" light />
       <div className="grid min-h-[21rem] grid-cols-[5.2rem_1fr] bg-slate-50 text-slate-900 sm:grid-cols-[8rem_1fr]">
         <aside className="bg-slate-900 p-3 text-white">
-          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">
+          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-300">
             PDV
           </p>
           <div className="mt-3 space-y-2">
@@ -40,7 +40,7 @@ function RestaurantScreenshot() {
               Comanda
             </div>
           </div>
-          <p className="mt-5 text-[10px] font-semibold text-slate-400">Abertas</p>
+          <p className="mt-5 text-[10px] font-semibold text-slate-300">Abertas</p>
           <div className="mt-2 space-y-1 text-[10px]">
             <div className="rounded bg-white px-2 py-1 text-slate-900">#184 · Mesa 05</div>
             <div className="rounded bg-slate-800 px-2 py-1 text-slate-200">#185 · Balcão</div>
@@ -54,11 +54,11 @@ function RestaurantScreenshot() {
               <h4 className="text-base font-black uppercase italic tracking-tight text-slate-800 sm:text-lg">
                 Fila da Cozinha
               </h4>
-              <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500">
+              <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-400">
                 Monitor de pedidos em tempo real
               </p>
             </div>
-            <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">
+            <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.18em] text-slate-300">
               <span className="h-2.5 w-2.5 rounded-full bg-emerald-500" />
               Live
             </div>
@@ -105,7 +105,7 @@ function RestaurantScreenshot() {
                     {order.time}
                   </span>
                 </div>
-                <p className="mt-3 border-b border-slate-100 pb-2 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">
+                <p className="mt-3 border-b border-slate-100 pb-2 text-[10px] font-black uppercase tracking-[0.18em] text-slate-300">
                   {order.customer}
                 </p>
                 <div className="mt-3 space-y-2">
@@ -257,7 +257,7 @@ function BrowserChrome({
         warm
           ? "bg-[#ead3a3] text-[#7a4e2a]"
           : light
-            ? "bg-white text-slate-500"
+            ? "bg-white text-slate-400"
             : "bg-black/20 text-white/70"
       }`}
     >
@@ -314,7 +314,7 @@ export function ProjectCard({
           <h3 className="mt-3 text-2xl font-semibold tracking-tight text-white sm:text-3xl">
             {title}
           </h3>
-          <p className="mt-4 max-w-xl text-base leading-8 text-slate-300">{summary}</p>
+          <p className="mt-4 max-w-xl text-base leading-8 text-slate-200">{summary}</p>
 
           <div className="mt-6 flex flex-wrap gap-2">
             {metrics.map((metric) => (
@@ -323,7 +323,7 @@ export function ProjectCard({
                 className="soft-chip inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs text-slate-200"
               >
                 <strong className="text-white">{metric.value}</strong>
-                <span className="uppercase tracking-[0.16em] text-slate-400">
+                <span className="uppercase tracking-[0.16em] text-slate-300">
                   {metric.label}
                 </span>
               </span>
@@ -336,7 +336,7 @@ export function ProjectCard({
           </div>
 
           <div className="mt-6">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-400">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-300">
               {labels.skills}
             </p>
             <div className="mt-3 flex flex-wrap gap-2">
@@ -357,7 +357,7 @@ export function ProjectCard({
 
           <div className="grid gap-5 md:grid-cols-2">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-400">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-300">
                 {labels.build}
               </p>
               <div className="mt-3 space-y-2">
@@ -370,7 +370,7 @@ export function ProjectCard({
             </div>
 
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-400">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-300">
                 {labels.architecture}
               </p>
               <div className="mt-3 space-y-2">
@@ -384,7 +384,7 @@ export function ProjectCard({
           </div>
 
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-400">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-300">
               {labels.stack}
             </p>
             <div className="mt-3 flex flex-wrap gap-2">
@@ -407,10 +407,11 @@ export function ProjectCard({
 function CaseTextBlock({ title, text }: { title: string; text: string }) {
   return (
     <div>
-      <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-400">
+      <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-300">
         {title}
       </p>
       <p className="mt-2 leading-7 text-slate-200">{text}</p>
     </div>
   );
 }
+

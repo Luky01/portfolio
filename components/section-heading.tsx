@@ -1,4 +1,4 @@
-type SectionHeadingProps = {
+﻿type SectionHeadingProps = {
   eyebrow?: string;
   title: string;
   intro?: string;
@@ -20,8 +20,9 @@ export function SectionHeading({
         {title}
       </h2>
       {intro ? (
-        <p className="mt-4 text-base leading-8 text-slate-300 sm:text-lg">{intro}</p>
+        <p className="mt-4 text-base leading-8 text-slate-200 sm:text-lg">{intro}</p>
       ) : null}
     </div>
   );
 }
+
