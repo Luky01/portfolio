@@ -1,5 +1,18 @@
 import type { Metadata } from "next";
+import { Montserrat, Roboto } from "next/font/google";
 import "./globals.css";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-title",
+  display: "swap",
+});
+
+const roboto = Roboto({
+  subsets: ["latin"],
+  variable: "--font-body",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Lucas Braga Zamproni Lima | Desenvolvedor Full Stack",
@@ -30,8 +43,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body>{children}</body>
+      <body className={`${montserrat.variable} ${roboto.variable}`}>{children}</body>
     </html>
   );
 }
-
